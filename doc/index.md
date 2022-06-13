@@ -8,7 +8,7 @@
 ### VERSION HISTORY
 | version | date | modification |
 |---|---|---|
-| v0.6.2-beta | 2019. 04. 07 | First version of D'CENT CLI SDK connector release |
+| v0.1.2-beta | 2022. 06. 13 | First version of D'CENT CLI SDK connector release |
 
 <br><br><br>
 
@@ -18,7 +18,6 @@ This guide explains how to install DCENT CLI SDK and use the SDK for your consol
 
 ## 2. Architecture
 The figure below is a D'CENT CLI SDK structure.
-<div><img src="./image/dcent-web-sdk-arch.png"</img></div>
 <br>
 
 When the functions is called, if the D'CENT Bridge Service is not running as a popup, the popup window is automatically opened internally and a request to process the function is transmitted.
