@@ -38,10 +38,8 @@ import DcentCLIConnector from 'dcent-cli-connector'
 Developer can access api through `window.DcentCLIConnector` object or `DcentCLIConnector` object.
 
 ### Requirement
-- Must have a `D'CENT Biometric wallet`. You can get "Order Now" page of D'CENT homepage. (http://dcentwallet.com)
-- You need to install the lastest `D'CENT Bridge`. (http://bridge.dcentwallet.com/download)
+- Must have a `D'CENT Biometric wallet`. You can get the device from https://store.dcentwallet.com/
 - D'CENT Biometric will be connected with your PC or Labtop using USB Cable(Micro USB 5-pin type).
-
 
 ## 5. DEVELOPMENT
 
@@ -86,22 +84,6 @@ If D'CENT wallet isn't connected via USB, you'll get the following error:
 }
 ```
 
-If the bridge service popup window is closed while calling a function and waiting, the following error occurs:
-```js
-{
-    "header": {
-        "version": "1.0",
-        "request_from": "dcent-web",
-        "status": "error"
-    },
-    "body": {
-        "error": {
-            "code": "pop-up_closed",
-            "message": "Pop-up windows has been closed"
-        }
-    }
-}
-```
 
 When executing a function that requires user authentication, an error occurs if the user cancels the authentication.
 The following shows the user cancel error in the Ethereum signed Transaction.
@@ -161,7 +143,7 @@ The default value is 60 seconds.
 You can set the timeout time by calling `setTimeOutMs ()` as shown below.
 ```js  
   try {
-    await dcent.setTimeOutMs(60000) // 60 sec, The default value is 60 seconds.
+    await DcentCLIConnector.setTimeOutMs(60000) // 60 sec, The default value is 60 seconds.
   } catch (e) {
     console.log(e)    
   }
@@ -173,7 +155,7 @@ All functions except setTimeOutMs function are called and then respond with `JSO
   {
     "header": {
       "version": "1.0",
-      "response_from": "dcent-web",
+      "response_from": "dcent-cli",
       "status": "error"
     },
     "body": {
@@ -191,7 +173,7 @@ You can get connected device information using `getDeviceInfo()` function.
 // Get connected device information
 var result
 try{
-    result = await DcentWebApi.getDeviceInfo()
+    result = await DcentCLIConnector.getDeviceInfo()
 }catch(e){
     result = e
 }
@@ -257,7 +239,7 @@ If you want to change the label of device, you can do it using `setLabel()` fucn
 ```js
 var result
 try{
-    result = await DcentWebApi.setLabel("IoTrust")
+    result = await DcentCLIConnector.setLabel("IoTrust")
 }catch(e){
     result = e
 }
@@ -270,8 +252,8 @@ If you want to add token type coin account, you must specify the coin name as th
 
 ```js
 let account_infos = [{
-    coin_group: DcentWebApi.coinGroup.ETHEREUM,
-    coin_name: DcentWebApi.coinName.ETHEREUM,
+    coin_group: DcentCLIConnector.coinGroup.ETHEREUM,
+    coin_name: DcentCLIConnector.coinName.ETHEREUM,
     label: 'ETHEREUM_1', // account label
     balance: '0 ETH', // {String} balance of account. This string will be displayed on device.
     address_path: "m/44'/60'/0'/0/0" // key path of the account. This address_path is displayed on the device with the corresponding address and QR code.
@@ -280,7 +262,7 @@ let account_infos = [{
 var result
 try{
     // Ethereum account will be created.
-    result = await DcentWebApi.syncAccount(account_infos)
+    result = await DcentCLIConnector.syncAccount(account_infos)
 }catch(e){
     result = e
 }
@@ -289,8 +271,8 @@ try{
 
 ```js
 let account_infos = [{
-    coin_group: DcentWebApi.coinGroup.ETHEREUM,
-    coin_name: DcentWebApi.coinName.ETHEREUM,
+    coin_group: DcentCLIConnector.coinGroup.ETHEREUM,
+    coin_name: DcentCLIConnector.coinName.ETHEREUM,
     label: 'ETH_1', // account label
     balance: '1 ETH', // {String} balance of account. This string will be displayed on device.
     address_path: "m/44'/60'/0'/0/1" // key path of the account. This address_path is displayed on the device with the corresponding address and QR code.
@@ -301,7 +283,7 @@ let account_infos = [{
 var result
 try{
     // Ethereum account will be updated.
-    result = await DcentWebApi.syncAccount(account_infos)
+    result = await DcentCLIConnector.syncAccount(account_infos)
 }catch(e){
     result = e
 }
@@ -316,8 +298,8 @@ Accounts are distinguished by `account'` in address_path.
 
 ```js
 let account_infos = [{
-    coin_group: DcentWebApi.coinGroup.ETHEREUM,
-    coin_name: DcentWebApi.coinName.ETHEREUM,
+    coin_group: DcentCLIConnector.coinGroup.ETHEREUM,
+    coin_name: DcentCLIConnector.coinName.ETHEREUM,
     label: 'ETH_2', // account label
     balance: '0 ETH', // balance of account. This string will be displayed on device.
     address_path: "m/44'/60'/1'/0/0" // key path of the account. This address_path is displayed on the device with the corresponding address and QR code.
@@ -326,7 +308,7 @@ let account_infos = [{
 var result
 try{
     // A New Ethereum account is created.
-    result = await DcentWebApi.syncAccount(account_infos)
+    result = await DcentCLIConnector.syncAccount(account_infos)
 }catch(e){
     result = e
 }
@@ -409,7 +391,7 @@ You can get a signature value to sign a user message with that private key With 
 var message = 'This is a message!'
 var result
 try {
-    result = await dcent.getEthereumSignedMessage(message, "m/44'/60'/0'/0/0");
+    result = await DcentCLIConnector.getEthereumSignedMessage(message, "m/44'/60'/0'/0/0");
 } catch (e) {
     console.log(e)
     result = e
