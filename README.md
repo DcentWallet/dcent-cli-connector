@@ -28,3 +28,17 @@ try{
 }
 DcentCLIConnector.finalize() // 
 ```
+
+## Test
+`sample/index.js` is test program. You can run the program. 
+### Preparence
+- Connect D'CENT hardware wallet using USB cable. If you don't have the device, you can buy it in D'CENT Store. (https://store.dcentwallet.com/)
+
+- After connecting D'CENT Hardware wallet, power on the device and confirm user fingerprint or PIN.
+### Run sample
+```
+git clone https://github.com/DcentWallet/dcent-cli-connector.git
+cd dcent-cli-connector
+npm i 
+node sample/index.js
+```
