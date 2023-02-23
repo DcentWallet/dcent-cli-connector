@@ -8,6 +8,7 @@
 ### VERSION HISTORY
 | version | date | modification |
 |---|---|---|
+| v0.1.3-beta | 2023. 02. 23 | Improved stability | 
 | v0.1.2-beta | 2022. 06. 13 | First version of D'CENT CLI SDK connector release |
 
 <br><br><br>
